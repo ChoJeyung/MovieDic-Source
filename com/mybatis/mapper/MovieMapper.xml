@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.MovieDao">
+
+	<resultMap id="result" type="Movie">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="year" column="year" />
+		<result property="rating" column="rating" />
+		<result property="genre" column="genre" />
+		<result property="ratio" column="ratio" />
+		<result property="director" column="director" />
+	</resultMap>
+
+	<select id="selectList" resultMap="result">
+		SELECT * FROM movies;
+	</select>
+
+	<select id="selectById" parameterType="int" resultMap="result">
+		SELECT * FROM movies WHERE id = #{id}
+	</select>
+
+	<insert id="insert" parameterType="Movie" useGeneratedKeys="true"
+		keyProperty="list_id">
+		INSERT INTO movies (title, year, rating, genre, ratio, director) VALUES (#{title}, #{year}, #{rating}, #{genre}, #{ratio}, #{director});
+	</insert>
+
+	<update id="update" parameterType="Movie">
+		UPDATE movies
+		SET title = #{title}, year=#{year}, rating=#{rating}, genre=#{genre}, ratio=#{ratio}, director=#{director}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE from movies WHERE id = #{id}
+	</delete>
+
+</mapper>

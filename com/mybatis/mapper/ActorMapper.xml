@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dao.ActorDao">
+
+    <resultMap id="result" type="Actor">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>   
+        <result property="age" column="age"/>
+    </resultMap>
+ 
+    <select id="selectList" resultMap="result">
+        SELECT * FROM actors;
+    </select>
+    
+ 	<select id="selectById" parameterType="int" resultMap="result">
+        SELECT * FROM actors WHERE id = #{id}
+    </select>
+    
+ 	<insert id="insert" parameterType="Actor" useGeneratedKeys="true" keyProperty="list_id">
+        INSERT INTO actors (name, sex, age) VALUES (#{name}, #{sex}, #{age});
+    </insert>
+    
+    <update id="update" parameterType="Actor">
+        UPDATE actors
+        SET name = #{name}, password=#{sex}, email=#{age} 
+        WHERE id = #{id} 
+  	</update>
+ 
+	<delete id="delete" parameterType="int">
+        DELETE from actors WHERE id = #{id}
+    </delete>
+    
+</mapper>

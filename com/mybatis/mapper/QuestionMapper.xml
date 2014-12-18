@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dao.QuestionDao">
+
+    <resultMap id="result" type="Question">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="achv_id" column="achv_id"/>   
+    </resultMap>
+ 
+    <select id="selectList" resultMap="result">
+        SELECT * FROM questions;
+    </select>
+    
+ 	<select id="selectById" parameterType="int" resultMap="result">
+        SELECT * FROM questions WHERE id = #{id}
+    </select>
+    
+ 	<insert id="insert" parameterType="Question" useGeneratedKeys="true" keyProperty="list_id">
+        INSERT INTO questions (content, achv_id) VALUES (#{content},#{achv_id});
+    </insert>
+    
+    <update id="update" parameterType="Question">
+        UPDATE questions
+        SET name = #{content}, achv_id=#{achv_id} 
+        WHERE id = #{id} 
+  	</update>
+ 
+	<delete id="delete" parameterType="int">
+        DELETE from questions WHERE id = #{id}
+    </delete>
+    
+</mapper>

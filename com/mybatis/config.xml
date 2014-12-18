@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="User" type="vo.User" />
+		<typeAlias alias="Achievement" type="vo.Achievement" />
+		<typeAlias alias="Movie" type="vo.Movie" />
+		<typeAlias alias="Question" type="vo.Question" />
+		<typeAlias alias="Actor" type="vo.Actor" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<!-- connecting to Local MySql -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/projects" />
+				<property name="username" value="root" />
+				<property name="password" value="12123" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/mybatis/mapper/UserMapper.xml" />
+		<mapper resource="com/mybatis/mapper/ActorMapper.xml" />
+		<mapper resource="com/mybatis/mapper/AchievementMapper.xml" />
+		<mapper resource="com/mybatis/mapper/MovieMapper.xml" />
+		<mapper resource="com/mybatis/mapper/QuestionMapper.xml" />
+	</mappers>
+</configuration>
